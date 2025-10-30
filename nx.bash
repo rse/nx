@@ -5,6 +5,9 @@
 ##  Licensed under MIT <https://spdx.org/licenses/MIT>
 ##
 
+#   use sane environment
+set -o errexit -o pipefail
+
 #   sanity check usage
 if [[ $# -lt 2 ]]; then
     echo "nx: ERROR: invalid arguments (environment and command expected)" 1>&2
@@ -24,7 +27,7 @@ fatal () {
 
 #   determine environment directory
 env="$1"; shift
-if [[ $env = "" ]]; then
+if [[ -z $env ]]; then
     fatal "invalid empty environment"
 fi
 if [[ ! $env =~ ^[a-zA-Z0-9_-]+$ ]]; then
@@ -42,12 +45,13 @@ mkenv () {
 
 #   helper function for extracting package name
 npm_pkg_name () {
-    echo "$1" | sed -e 's;^[^:]*:;;' -e 's;^\(..*\)@\(..*\);-\1;' -e 's;^[^-].*;;' -e 's;^-;;'
+    local entry="$1"
+    echo "$entry" | sed -e 's;^[^:]*:;;' -e 's;^\(..*\)@\(..*\);-\1;' -e 's;^[^-].*;;' -e 's;^-;;'
 }
 
 #   helper function for determining package version
 npm_pkg_version () {
-    npm list -g --depth 0 "$1" 2>/dev/null | grep "$1" | sed "s/.*@//"
+    npm list -g --depth 0 "$1" 2>/dev/null | grep -F "$1@" | sed "s/.*@//"
 }
 
 #   dispatch according to command arguments
@@ -83,14 +87,14 @@ case "$1" in
 
         #   for all installed NPM packages...
         mkenv
-        for pkg in $(npm list -g --depth 0 -p -l); do
-            pkg=$(npm_pkg_name "$pkg")
-            if [[ $pkg != "" ]]; then
+        while IFS= read -r pkg_entry; do
+            pkg=$(npm_pkg_name "$pkg_entry")
+            if [[ -n $pkg ]]; then
                 #   ...determine versions...
                 version=$(npm_pkg_version "$pkg")
                 echo "nx: INFO: package $pkg $version"
             fi
-        done
+        done < <(npm list -g --depth 0 -p -l)
         ;;
 
     --update )
@@ -101,9 +105,9 @@ case "$1" in
 
         #   for all installed NPM packages...
         mkenv
-        for pkg in $(npm list -g --depth 0 -p -l); do
-            pkg=$(npm_pkg_name "$pkg")
-            if [[ $pkg != "" ]]; then
+        while IFS= read -r pkg_entry; do
+            pkg=$(npm_pkg_name "$pkg_entry")
+            if [[ -n $pkg ]]; then
                 #   ...determine versions...
                 version_old=$(npm_pkg_version "$pkg")
                 version_new=$(npm show "$pkg" version 2>/dev/null)
@@ -120,7 +124,7 @@ case "$1" in
                     echo "nx: INFO: package $pkg $version_old -- still up-to-date"
                 fi
             fi
-        done
+        done < <(npm list -g --depth 0 -p -l)
         ;;
 
     * )
