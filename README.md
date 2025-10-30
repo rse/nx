@@ -24,24 +24,77 @@ Usage
 -----
 
 ```
-# setup Anthropic Claude Code
-$ nx claude --create
-$ nx claude npm install -g @anthropic-ai/claude-code
-$ nx claude npm install -g ccstatusline
-$ nx claude npm install -g tweakcc
-$ nx claude tweakcc [...]
-$ nx claude --list
+# setup environment
+$ nx foo --create
+$ nx foo npm install -g bar
+
+# use environment
+$ nx foo node [...]
+$ nx foo npm [...]
+$ nx foo bar [...]
 
 [...]
 
-# use Anthropic Claude Code
-$ nx claude --update
-$ nx claude claude [...]
+# check and update environment
+$ nx foo --list
+$ nx foo --update
 
 [...]
 
-# destroy Anthropic Claude Code
-$ nx claude --destroy
+# destroy environment
+$ nx foo --destroy
+```
+
+Example
+-------
+
+```
+# setup tool environment
+$ nx tool --create
+
+# install Anthropic Claude Code (and companion tools)
+# (https://www.claude.com/product/claude-code)
+$ nx tool npm install -g @anthropic-ai/claude-code
+$ nx tool npm install -g ccstatusline tweakcc
+$ nx tool tweakcc -a
+
+# install Google Gemini
+# (https://google-gemini.github.io/gemini-cli/)
+$ nx tool npm install -g @google/gemini-cli
+
+# install Alibaba Qwen Code
+# (https://github.com/QwenLM/qwen-code)
+$ nx tool npm install -g @qwen-code/qwen-code
+
+# install Github Copilot CLI
+# (https://github.com/github/copilot-cli)
+$ nx tool npm install -g @github/copilot
+
+# install OpenAI Codex
+# (https://github.com/openai/codex/)
+$ nx tool npm install -g @openai/codex
+
+# install OpenCode
+# (https://github.com/sst/opencode)
+$ nx tool npm install -g opencode-ai
+
+# install Crush
+# (https://github.com/charmbracelet/crush)
+$ nx tool npm install -g @charmland/crush
+
+# install Continue CLI
+# (https://docs.continue.dev/cli/install)
+$ nx tool npm install -g @continuedev/cli
+
+# use the tools
+$ nx tool claude [...]
+$ nx tool gemini [...]
+$ nx tool qwen [...]
+$ nx tool copilot [...]
+$ nx tool codex [...]
+$ nx tool opencode [...]
+$ nx tool crush [...]
+$ nx tool continue [...]
 ```
 
 Copyright & License
