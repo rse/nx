@@ -11,7 +11,8 @@ dedicated global-like local installation tree.
 
 The crux is that the used global installation trees under `~/.nx/` are
 writable instead of the usually non-writable default one (under e.g.
-`/opt/local`).
+`/opt/local`). Additionally, the `--update` option allows to
+conveniently update all globally installed NPM packages.
 
 Installation
 ------------
