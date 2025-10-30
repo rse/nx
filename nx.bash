@@ -36,7 +36,7 @@ fi
 envdir="$HOME/.nx/$env"
 
 #   helper function for setting up environment
-mkenv () {
+setup_env_vars () {
     export NPM_PREFIX="$envdir"
     export NPM_CONFIG_PREFIX="$envdir"
     export NODE_PATH="$envdir/lib/node_modules${NODE_PATH+:}${NODE_PATH}"
@@ -86,7 +86,7 @@ case "$1" in
         fi
 
         #   for all installed NPM packages...
-        mkenv
+        setup_env_vars
         while IFS= read -r pkg_entry; do
             pkg=$(npm_pkg_name "$pkg_entry")
             if [[ -n $pkg ]]; then
@@ -104,7 +104,7 @@ case "$1" in
         fi
 
         #   for all installed NPM packages...
-        mkenv
+        setup_env_vars
         while IFS= read -r pkg_entry; do
             pkg=$(npm_pkg_name "$pkg_entry")
             if [[ -n $pkg ]]; then
@@ -118,7 +118,7 @@ case "$1" in
                 #   ...and either update or keep it
                 if [[ $version_old != $version_new ]]; then
                     echo "nx: INFO: package $pkg $version_old -- updating to $version_new"
-                    npm install --quiet --silent -y -g "$pkg@$version_new" || \
+                    npm install --silent -y -g "$pkg@$version_new" || \
                         fatal "failed to update NPM package: $pkg@$version_new"
                 else
                     echo "nx: INFO: package $pkg $version_old -- still up-to-date"
@@ -128,7 +128,7 @@ case "$1" in
         ;;
 
     * )
-        mkenv
+        setup_env_vars
         "$@"
         ;;
 esac
