@@ -24,13 +24,24 @@ Usage
 -----
 
 ```
-# use Anthropic Claude Code
-$ nx claude create
+# setup Anthropic Claude Code
+$ nx claude --create
 $ nx claude npm install -g @anthropic-ai/claude-code
 $ nx claude npm install -g ccstatusline
 $ nx claude npm install -g tweakcc
 $ nx claude tweakcc [...]
+$ nx claude --list
+
+[...]
+
+# use Anthropic Claude Code
+$ nx claude --update
 $ nx claude claude [...]
+
+[...]
+
+# destroy Anthropic Claude Code
+$ nx claude --destroy
 ```
 
 Copyright & License
