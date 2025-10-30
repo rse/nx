@@ -94,7 +94,7 @@ $ nx tool copilot [...]
 $ nx tool codex [...]
 $ nx tool opencode [...]
 $ nx tool crush [...]
-$ nx tool continue [...]
+$ nx tool cn [...]
 ```
 
 Copyright & License
