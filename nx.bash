@@ -51,7 +51,7 @@ npm_pkg_name () {
 
 #   helper function for determining package version
 npm_pkg_version () {
-    npm list -g --depth 0 "$1" 2>/dev/null | grep -F "$1@" | sed "s/.*@//"
+    npm list -g --depth 0 "$1" | grep -F "$1@" | sed "s/.*@//"
 }
 
 #   dispatch according to command arguments
