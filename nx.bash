@@ -84,8 +84,6 @@ case "$1" in
         if [[ ! -d $envdir ]]; then
             fatal "environment \"$env\" does not exist"
         fi
-
-        #   for all installed NPM packages...
         setup_env_vars
         while IFS= read -r pkg_entry; do
             pkg=$(npm_pkg_name "$pkg_entry")
@@ -102,8 +100,6 @@ case "$1" in
         if [[ ! -d $envdir ]]; then
             fatal "environment \"$env\" does not exist"
         fi
-
-        #   for all installed NPM packages...
         setup_env_vars
         while IFS= read -r pkg_entry; do
             pkg=$(npm_pkg_name "$pkg_entry")
@@ -128,6 +124,10 @@ case "$1" in
         ;;
 
     * )
+        #   execute arbitrary command
+        if [[ ! -d $envdir ]]; then
+            fatal "environment \"$env\" does not exist"
+        fi
         setup_env_vars
         "$@"
         ;;
