@@ -11,10 +11,10 @@ set -o errexit -o pipefail
 #   sanity check usage
 if [[ $# -lt 2 ]]; then
     echo "nx: ERROR: invalid arguments (environment and command expected)" 1>&2
-    echo "nx: USAGE: nx <env> --create" 1>&2
-    echo "nx: USAGE: nx <env> --destroy" 1>&2
-    echo "nx: USAGE: nx <env> --list" 1>&2
-    echo "nx: USAGE: nx <env> --update" 1>&2
+    echo "nx: USAGE: nx <env> --create"    1>&2
+    echo "nx: USAGE: nx <env> --destroy"   1>&2
+    echo "nx: USAGE: nx <env> --list"      1>&2
+    echo "nx: USAGE: nx <env> --update"    1>&2
     echo "nx: USAGE: nx <env> <cmd> [...]" 1>&2
     exit 1
 fi
