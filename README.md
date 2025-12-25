@@ -98,6 +98,11 @@ $ nx tool crush [...]
 $ nx tool cn [...]
 ```
 
+See Also
+--------
+
+For Python, check out the sibling utility [**px**](https://github.com/rse/px).
+
 Copyright & License
 -------------------
 
