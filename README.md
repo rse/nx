@@ -87,6 +87,10 @@ $ nx tool npm install -g @charmland/crush
 # (https://docs.continue.dev/cli/install)
 $ nx tool npm install -g @continuedev/cli
 
+# install Pi
+# (https://pi.dev/)
+$ nx tool npm install -g @mariozechner/pi-coding-agent
+
 # use the tools
 $ nx tool claude [...]
 $ nx tool gemini [...]
@@ -96,6 +100,7 @@ $ nx tool codex [...]
 $ nx tool opencode [...]
 $ nx tool crush [...]
 $ nx tool cn [...]
+$ nx tool pi [...]
 ```
 
 See Also
