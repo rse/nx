@@ -111,6 +111,6 @@ For Python, check out the sibling utility [**px**](https://github.com/rse/px).
 Copyright & License
 -------------------
 
-Copyright &copy; 2025 [Dr. Ralf S. Engelschall](mailto:rse@engelschall.com)<br/>
+Copyright &copy; 2025-2026 [Dr. Ralf S. Engelschall](mailto:rse@engelschall.com)<br/>
 Licensed under [MIT](https://spdx.org/licenses/MIT)
 
