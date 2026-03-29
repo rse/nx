@@ -129,7 +129,7 @@ case "$1" in
             fatal "environment \"$env\" does not exist"
         fi
         setup_env_vars
-        "$@"
+        exec "$@"
         ;;
 esac
 
